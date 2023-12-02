@@ -1,0 +1,72 @@
+version: "3.9"
+services:
+  mono-demo-debug:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    image: ${LOCAL_REGISTRY}:5002/mono-demo:${TAG}
+    ports:
+      - 2227:2227
+      - 55555:55555
+    devices:
+      - /dev/gpiochip0
+    volumes:
+      - type: bind
+        source: /tmp
+        target: /tmp
+      - type: bind
+        source: /dev
+        target: /dev
+      - /etc/os-release:/etc/os-release:ro
+      - /proc/device-tree:/proc-host/device-tree:ro
+    depends_on: [
+      weston
+    ]
+
+  mono-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}/mono-demo:${TAG}
+    volumes:
+      - type: bind
+        source: /tmp
+        target: /tmp
+      - type: bind
+        source: /dev
+        target: /dev
+    depends_on: [
+      weston
+    ]
+
+  weston:
+    image: torizon/weston${GPU}:4-rc
+    environment:
+      - ACCEPT_FSL_EULA=1
+    # Required to get udev events from host udevd via netlink
+    network_mode: host
+    volumes:
+      - type: bind
+        source: /tmp
+        target: /tmp
+      - type: bind
+        source: /dev
+        target: /dev
+      - type: bind
+        source: /run/udev
+        target: /run/udev
+    cap_add:
+      - CAP_SYS_TTY_CONFIG
+    # Add device access rights through cgroup...
+    device_cgroup_rules:
+      # ... for tty0
+      - "c 4:0 rmw"
+      # ... for tty1
+      - "c 4:1 rmw"
+      # ... for tty7
+      - "c 4:7 rmw"
+      # ... for /dev/input devices
+      - "c 13:* rmw"
+      - "c 199:* rmw"
+      # ... for /dev/dri devices
+      - "c 226:* rmw"

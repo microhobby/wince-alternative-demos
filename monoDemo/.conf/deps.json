@@ -1,0 +1,11 @@
+{
+    "packages": [
+        "openssh-client",
+        "sshpass",
+        "mono-complete",
+        "mono-roslyn",
+        "mono-dbg",
+        "msbuild",
+        "nuget"
+    ]
+}

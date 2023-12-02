@@ -1,0 +1,11 @@
+*/**/bin
+*/**/obj
+bin
+obj
+libs
+
+credentials.zip
+*.lock.yml
+
+.conf/.depok
+.conf/.docok

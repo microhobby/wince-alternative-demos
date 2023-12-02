@@ -1,0 +1,24 @@
+{
+  "torizon_psswd": "torizon",
+  "torizon_login": "torizon",
+  "torizon_ip": "192.168.0.88",
+  "host_ip": "192.168.0.51",
+  "torizon_workspace": "${workspaceFolder}",
+  "torizon_debug_port": "55555",
+  "torizon_debug_ssh_port": "2227",
+  "torizon_debug_port2": "",
+  "torizon_debug_port3": "",
+  "torizon_gpu": "-imx8",
+  "torizon_arch": "aarch64",
+  "wait_sync": "1",
+  "torizon_run_as": "torizon",
+  "torizon_app_root": "/home/torizon",
+  "tcb.packageName": "monoDemo",
+  "tcb.version": "3.8.1",
+  "omnisharp.useModernNet": false,
+  "dotnet.server.useOmnisharp": true,
+  "torizon.gpuPrefixRC": true,
+  "docker.environment": {
+    "DOCKER_HOST": "tcp://192.168.0.88:2375"
+  }
+}
