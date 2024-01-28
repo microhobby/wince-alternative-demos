@@ -19,7 +19,7 @@
             }
         },
         {
-            "label": "build-application",
+            "label": "build-debug",
             "detail": "Builds the project using the msbuild",
             "command": "msbuild",
             "type": "process",
@@ -32,59 +32,7 @@
             }
         },
         {
-            "label": "deploy-application",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-assets",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/assets",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/assets"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-torizon-arm",
+            "label": "build-debug-arm",
             "detail": "",
             "hide": true,
             "command": "msbuild",
@@ -113,21 +61,18 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/monoDemo.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} monoDemo.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application"
+                "run-container-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -152,22 +97,18 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/monoDemo.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} monoDemo.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets"
+                "run-container-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -192,22 +133,18 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/monoDemo.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} monoDemo.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets"
+                "run-container-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -244,6 +181,29 @@
             }
         },
         {
+            "label": "fetch-templates-repo",
+            "detail": "",
+            "hide": true,
+            "command": "echo",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "echo",
+                "${command:torizon.fetchTemplates}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "git-branch",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+        "dependsOn": []
+        },
+        {
             "label": "try-update-template",
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
@@ -267,6 +227,9 @@
                 "0"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "fetch-templates-repo"
+            ],
             "icon": {
                 "id": "repo-sync",
                 "color": "terminal.ansiCyan"
@@ -318,17 +281,19 @@
             "options": {
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
-                    "TORIZON_ARCH": "${input:archList}"
+                    "TORIZON_ARCH": "${input:archList}",
+                    "APP_ROOT": "${config:torizon_app_root}"
                 }
             },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
                 "${workspaceFolder}",
-                "${command:docker_registry}",
+                "${command:docker_login}",
                 "${command:docker_tag}",
+                "${command:docker_registry}",
                 "mono-demo",
-                "${command:torizon_gpu}"
+                "${config:torizon_gpu}"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -369,6 +334,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_LOGIN": "${command:docker_login}",
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_TAG": "${command:docker_tag}",
                     "TCB_CLIENTID": "${command:tcb.clientId}",
@@ -448,7 +414,8 @@
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_LOGIN": "${command:docker_login}",
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name monoDemo --package-version ${command:tcb.getNextPackageVersion} --login $DOCKER_LOGIN $DOCKER_PSSWD --canonicalize docker-compose.prod.yml"
+                    "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name monoDemo --package-version ${command:tcb.getNextPackageVersion} --login-to $DOCKER_REGISTRY $DOCKER_LOGIN $DOCKER_PSSWD --canonicalize docker-compose.prod.yml"
                 }
             },
             "args": [
@@ -682,7 +649,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "${config:torizon_workspace}/docker-compose.yml",
+                "${command:torizon_workspace}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",
@@ -825,55 +792,32 @@
             }
         },
         {
-            "label": "get-logs",
+            "label": "pre-cleanup",
             "detail": "",
             "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": true
-            },
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "cat ${config:torizon_app_root}/err.log && cat ${config:torizon_app_root}/out.log"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "debug-breakpoint-log",
-                "color": "terminal.ansiRed"
-            }
-        },
-        {
-            "label": "pos-launch",
-            "detail": "",
-            "hide": true,
-            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "command": "if",
             "type": "shell",
             "args": [
-                "docker-compose",
+                "[",
+                "${command:cleanLock}",
+                "==",
+                "false",
+                "];",
+                "then",
+                "DOCKER_HOST=${config:torizon_ip}:2375",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "down",
-                "--remove-orphans"
+                "--remove-orphans",
+                ";",
+                "fi"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "wait-a-bit",
-                "get-logs"
+                "remove-dangling-images",
+                "wait-a-bit"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -882,22 +826,19 @@
             }
         },
         {
-            "label": "pre-cleanup",
+            "label": "remove-dangling-images",
             "detail": "",
             "hide": true,
             "command": "DOCKER_HOST=${config:torizon_ip}:2375",
             "type": "shell",
             "args": [
-                "docker-compose",
-                "-p",
-                "torizon",
-                "down",
-                "--remove-orphans"
+                "docker",
+                "image",
+                "prune",
+                "-f",
+                "--filter=dangling=true"
             ],
             "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -1098,7 +1039,9 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
-                "GPU=${config:torizon_gpu}"
+                "GPU=${config:torizon_gpu}",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1128,7 +1071,9 @@
                 "-t",
                 "cross-toolchain-arm-mono-demo",
                 "--build-arg",
-                "IMAGE_ARCH=arm"
+                "IMAGE_ARCH=arm",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1158,7 +1103,9 @@
                 "-t",
                 "cross-toolchain-amd64-mono-demo",
                 "--build-arg",
-                "IMAGE_ARCH=amd64"
+                "IMAGE_ARCH=amd64",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1188,7 +1135,9 @@
                 "-t",
                 "cross-toolchain-riscv64-mono-demo",
                 "--build-arg",
-                "IMAGE_ARCH=riscv64"
+                "IMAGE_ARCH=riscv64",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1317,7 +1266,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull mono-demo-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker compose pull mono-demo-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1344,7 +1293,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull mono-demo-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker compose pull mono-demo-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1371,7 +1320,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker-compose pull mono-demo-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker compose pull mono-demo-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1398,7 +1347,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker-compose pull mono-demo-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker compose pull mono-demo-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1420,7 +1369,8 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1447,7 +1397,8 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1474,12 +1425,13 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
                 "-d",
-                "mono-demo-debug-amd64"
+                "mono-demo-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1501,7 +1453,8 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1797,7 +1750,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker-compose pull mono-demo"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker compose pull mono-demo"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1824,7 +1777,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker-compose pull mono-demo"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker compose pull mono-demo"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1851,7 +1804,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker-compose pull mono-demo"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker compose pull mono-demo"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1878,7 +1831,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker-compose pull mono-demo"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker compose pull mono-demo"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1899,7 +1852,8 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1931,7 +1885,8 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1963,7 +1918,8 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -1995,7 +1951,8 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
-                "docker-compose",
+                "docker",
+                "compose",
                 "-p",
                 "torizon",
                 "up",
@@ -2075,6 +2032,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_LOGIN": "${command:docker_login}",
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_TAG": "${command:docker_tag}",
                     "TCB_CLIENTID": "${command:tcb.clientId}",
@@ -2128,7 +2086,64 @@
             },
             "dependsOrder": "sequence",
         "dependsOn": []
-        }
+        },
+        {
+            "label": "get-logs",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cat ${config:torizon_app_root}/err.log && cat ${config:torizon_app_root}/out.log"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "debug-breakpoint-log",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "pos-launch",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
+            "args": [
+                "docker-compose",
+                "-p",
+                "torizon",
+                "down",
+                "--remove-orphans"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit",
+                "get-logs"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
     ],
     "inputs": [
         {
