@@ -2,7 +2,8 @@
 using System.Device.Gpio;
 using Iot.Device.Button;
 
-namespace Torizon {
+namespace Torizon
+{
 
     public class DemoVerdinIMX8MP : DemoHardware
     {

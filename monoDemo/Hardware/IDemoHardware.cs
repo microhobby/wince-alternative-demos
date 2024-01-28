@@ -1,9 +1,11 @@
 using System.Device.Gpio;
 using Iot.Device.Button;
 
-namespace Torizon {
+namespace Torizon
+{
 
-    public interface IDemoHardware {
+    public interface IDemoHardware
+    {
         GpioPin LedRed { get; set; }
         GpioButton ButtonRed { get; set; }
     }
