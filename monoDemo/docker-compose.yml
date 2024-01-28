@@ -28,6 +28,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ${DOCKER_LOGIN}/mono-demo:${TAG}
+    devices:
+      - /dev/gpiochip0
     volumes:
       - type: bind
         source: /tmp
@@ -35,12 +37,14 @@ services:
       - type: bind
         source: /dev
         target: /dev
+      - /etc/os-release:/etc/os-release:ro
+      - /proc/device-tree:/proc-host/device-tree:ro
     depends_on: [
       weston
     ]
 
   weston:
-    image: torizon/weston${GPU}:4-rc
+    image: commontorizon/weston${GPU}:4-rc
     environment:
       - ACCEPT_FSL_EULA=1
     # Required to get udev events from host udevd via netlink

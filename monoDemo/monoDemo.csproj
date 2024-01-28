@@ -57,7 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Utils/**/*.cs" />
     <Compile Include="Hardware/**/*.cs" />
+    <Compile Include="Software/**/*.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
