@@ -4,6 +4,8 @@ bin
 obj
 libs
 
+.vs
+
 credentials.zip
 *.lock.yml
 
