@@ -31,6 +31,8 @@ namespace monoDemo
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxInput = new System.Windows.Forms.TextBox();
+            this.labelInput = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -76,6 +78,8 @@ namespace monoDemo
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxInput);
+            this.tabPage1.Controls.Add(this.labelInput);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.label1);
@@ -86,6 +90,23 @@ namespace monoDemo
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Controls";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBoxInput
+            // 
+            this.textBoxInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxInput.Location = new System.Drawing.Point(6, 325);
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.Size = new System.Drawing.Size(644, 40);
+            this.textBoxInput.TabIndex = 4;
+            // 
+            // labelInput
+            // 
+            this.labelInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelInput.Location = new System.Drawing.Point(6, 270);
+            this.labelInput.Name = "labelInput";
+            this.labelInput.Size = new System.Drawing.Size(641, 33);
+            this.labelInput.TabIndex = 3;
+            this.labelInput.Text = "Input:";
             // 
             // button1
             // 
@@ -163,7 +184,7 @@ namespace monoDemo
             // pictureBox5
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox5.Location = new System.Drawing.Point(3, 647);
+            this.pictureBox5.Location = new System.Drawing.Point(6, 647);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(195, 206);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,7 +195,7 @@ namespace monoDemo
             // 
             this.labelTorizonVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTorizonVersion.AutoSize = true;
-            this.labelTorizonVersion.Location = new System.Drawing.Point(359, 233);
+            this.labelTorizonVersion.Location = new System.Drawing.Point(370, 233);
             this.labelTorizonVersion.Name = "labelTorizonVersion";
             this.labelTorizonVersion.Size = new System.Drawing.Size(113, 33);
             this.labelTorizonVersion.TabIndex = 0;
@@ -185,7 +206,7 @@ namespace monoDemo
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 1650);
+            this.pictureBox3.Location = new System.Drawing.Point(6, 1650);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(195, 200);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -197,7 +218,7 @@ namespace monoDemo
             this.labelFrameworkVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelFrameworkVersion.AutoSize = true;
             this.labelFrameworkVersion.BackColor = System.Drawing.Color.Transparent;
-            this.labelFrameworkVersion.Location = new System.Drawing.Point(334, 1733);
+            this.labelFrameworkVersion.Location = new System.Drawing.Point(346, 1733);
             this.labelFrameworkVersion.Name = "labelFrameworkVersion";
             this.labelFrameworkVersion.Size = new System.Drawing.Size(162, 33);
             this.labelFrameworkVersion.TabIndex = 1;
@@ -208,7 +229,7 @@ namespace monoDemo
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 1146);
+            this.pictureBox4.Location = new System.Drawing.Point(6, 1146);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(195, 207);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -220,7 +241,7 @@ namespace monoDemo
             this.labelHWInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelHWInfo.AutoSize = true;
             this.labelHWInfo.BackColor = System.Drawing.Color.Transparent;
-            this.labelHWInfo.Location = new System.Drawing.Point(317, 1233);
+            this.labelHWInfo.Location = new System.Drawing.Point(328, 1233);
             this.labelHWInfo.Name = "labelHWInfo";
             this.labelHWInfo.Size = new System.Drawing.Size(197, 33);
             this.labelHWInfo.TabIndex = 5;
@@ -230,7 +251,7 @@ namespace monoDemo
             // pictureBox2
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 155);
+            this.pictureBox2.Location = new System.Drawing.Point(6, 155);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Padding = new System.Windows.Forms.Padding(3);
             this.pictureBox2.Size = new System.Drawing.Size(195, 190);
@@ -242,7 +263,7 @@ namespace monoDemo
             // 
             this.labelKernelVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelKernelVersion.AutoSize = true;
-            this.labelKernelVersion.Location = new System.Drawing.Point(366, 733);
+            this.labelKernelVersion.Location = new System.Drawing.Point(377, 733);
             this.labelKernelVersion.Name = "labelKernelVersion";
             this.labelKernelVersion.Size = new System.Drawing.Size(99, 33);
             this.labelKernelVersion.TabIndex = 7;
@@ -316,6 +337,8 @@ namespace monoDemo
         private System.Windows.Forms.PictureBox imageModule;
         private System.Windows.Forms.Label labelKernelVersion;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TextBox textBoxInput;
+        private System.Windows.Forms.Label labelInput;
     }
 }
 

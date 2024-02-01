@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Device.Gpio;
 using System.Device.Gpio.Drivers;
 using Torizon;
+using Torizon.Shell;
 using Torizon.WinForms.Animations;
 
 namespace monoDemo
@@ -129,6 +130,29 @@ namespace monoDemo
             this.imageModule.LoadAsync("https://docs.toradex.com/112616-apalis-imx8qm-8gb-wbit-front.png");
             //this.imageModule.LoadAsync("https://media1.tenor.com/m/apxQpu70-i4AAAAd/funny-animals-dog.gif");
             this.tableInfo.AutoScroll = true;
+
+            // make sure to hide the onboard keyboard
+            Exec.Bash(
+                "dbus-send --type=method_call --dest=org.onboard.Onboard /org/onboard/Onboard/Keyboard org.onboard.Onboard.Keyboard.Hide"
+            );
+
+            // if you want to show the onboard screen you need to do it yourself
+            EventHandler onboardToggle = (_sender, _e) =>
+            {
+                Exec.Bash(
+                    "dbus-send --type=method_call --dest=org.onboard.Onboard /org/onboard/Onboard/Keyboard org.onboard.Onboard.Keyboard.ToggleVisible"
+                );
+            };
+
+            this.textBoxInput.GotFocus += onboardToggle;
+            //this.textBoxInput.LostFocus += onboardToggle;
+            this.textBoxInput.Leave += onboardToggle;
+
+            // set the input text to the label
+            this.textBoxInput.TextChanged += (_sender, _e) =>
+            {
+                this.labelInput.Text = $"Input ({this.textBoxInput.Text}): ";
+            };
 
             // touch like events ??
             // If you want it you need to write it yourself
