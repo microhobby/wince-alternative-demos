@@ -58,6 +58,7 @@ namespace monoDemo
             }
 
             // load the images
+            this.welcome.ImageLocation = "./assets/monotechs.png";
             this.pictureBox1.ImageLocation = "./assets/ledoff.png";
             this.pictureBox2.ImageLocation = "./assets/torizon-logo-icon.png";
             this.pictureBox3.ImageLocation = "./assets/mono.png";

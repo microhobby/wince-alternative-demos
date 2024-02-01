@@ -31,6 +31,7 @@ namespace monoDemo
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.welcome = new System.Windows.Forms.PictureBox();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.labelInput = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@ namespace monoDemo
             this.imageModule = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.welcome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tableInfo.SuspendLayout();
@@ -78,6 +80,7 @@ namespace monoDemo
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.welcome);
             this.tabPage1.Controls.Add(this.textBoxInput);
             this.tabPage1.Controls.Add(this.labelInput);
             this.tabPage1.Controls.Add(this.button1);
@@ -91,10 +94,20 @@ namespace monoDemo
             this.tabPage1.Text = "Controls";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // welcome
+            // 
+            this.welcome.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.welcome.Location = new System.Drawing.Point(0, -4);
+            this.welcome.Name = "welcome";
+            this.welcome.Size = new System.Drawing.Size(650, 147);
+            this.welcome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.welcome.TabIndex = 5;
+            this.welcome.TabStop = false;
+            // 
             // textBoxInput
             // 
             this.textBoxInput.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxInput.Location = new System.Drawing.Point(6, 325);
+            this.textBoxInput.Location = new System.Drawing.Point(6, 380);
             this.textBoxInput.Name = "textBoxInput";
             this.textBoxInput.Size = new System.Drawing.Size(644, 40);
             this.textBoxInput.TabIndex = 4;
@@ -102,7 +115,7 @@ namespace monoDemo
             // labelInput
             // 
             this.labelInput.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelInput.Location = new System.Drawing.Point(6, 270);
+            this.labelInput.Location = new System.Drawing.Point(6, 336);
             this.labelInput.Name = "labelInput";
             this.labelInput.Size = new System.Drawing.Size(641, 33);
             this.labelInput.TabIndex = 3;
@@ -111,8 +124,8 @@ namespace monoDemo
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.LightCoral;
-            this.button1.Location = new System.Drawing.Point(25, 142);
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button1.Location = new System.Drawing.Point(27, 241);
             this.button1.Margin = new System.Windows.Forms.Padding(20);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(20);
@@ -125,11 +138,11 @@ namespace monoDemo
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 147);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(20);
-            this.pictureBox1.Size = new System.Drawing.Size(647, 120);
+            this.pictureBox1.Size = new System.Drawing.Size(650, 113);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -303,6 +316,7 @@ namespace monoDemo
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.welcome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tableInfo.ResumeLayout(false);
@@ -339,6 +353,7 @@ namespace monoDemo
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TextBox textBoxInput;
         private System.Windows.Forms.Label labelInput;
+        private System.Windows.Forms.PictureBox welcome;
     }
 }
 
