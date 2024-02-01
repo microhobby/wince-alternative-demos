@@ -5,11 +5,10 @@ services:
       context: .
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/mono-demo:${TAG}
-    ports:
-      - 2227:2227
-      - 55555:55555
     devices:
       - /dev/gpiochip0
+    # Required to get udev events from host udevd via netlink
+    network_mode: host
     volumes:
       - type: bind
         source: /tmp
@@ -17,11 +16,30 @@ services:
       - type: bind
         source: /dev
         target: /dev
+      - type: bind
+        source: /run/udev
+        target: /run/udev
+      - type: bind
+        source: /run/user
+        target: /run/user
       - /etc/os-release:/etc/os-release:ro
       - /proc/device-tree:/proc-host/device-tree:ro
-    depends_on: [
-      weston
-    ]
+    cap_add:
+      - CAP_SYS_TTY_CONFIG
+    # Add device access rights through cgroup...
+    device_cgroup_rules:
+      # ... for tty
+      - "c 4:* rmw"
+      # ... for /dev/input devices
+      - "c 13:* rmw"
+      - "c 199:* rmw"
+      # ... for /dev/dri devices
+      - "c 226:* rmw"
+      # ... for /dev/fb0
+      - "c 29:* rmw"
+    depends_on:
+      xfce:
+        condition: service_healthy
 
   mono-demo:
     build:
@@ -39,16 +57,12 @@ services:
         target: /dev
       - /etc/os-release:/etc/os-release:ro
       - /proc/device-tree:/proc-host/device-tree:ro
-    depends_on: [
-      weston
-    ]
 
-  weston:
-    image: commontorizon/weston${GPU}:4-rc
-    environment:
-      - ACCEPT_FSL_EULA=1
+  xfce:
+    image: commontorizon/xfce:4-rc
     # Required to get udev events from host udevd via netlink
     network_mode: host
+    privileged: true
     volumes:
       - type: bind
         source: /tmp
@@ -59,18 +73,29 @@ services:
       - type: bind
         source: /run/udev
         target: /run/udev
+      - type: bind
+        source: /run/user
+        target: /run/user
     cap_add:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
+      # ... for /dev/fb0
+      - "c 29:* rmw"
+    healthcheck:
+      # this tests if the X server is running
+      test:
+        - "CMD"
+        - "bash"
+        - "-c"
+        - "su -c 'DISPLAY=:0 xset -q || exit 1' torizon"
+      interval: 5s
+      timeout: 30s
+      retries: 10

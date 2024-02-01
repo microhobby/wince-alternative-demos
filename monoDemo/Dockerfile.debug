@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=6.12.0-rc
+ARG BASE_VERSION=6.12.1-rc
 
 ##
 # Directory of the application inside container
@@ -45,8 +45,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-    screen \
-    libgtk2.0 \
+    x11-xserver-utils \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
 	libgpiod-dev:arm64 \
