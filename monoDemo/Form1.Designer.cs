@@ -32,7 +32,7 @@ namespace monoDemo
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.welcome = new System.Windows.Forms.PictureBox();
-            this.textBoxInput = new System.Windows.Forms.TextBox();
+            this.textBoxInput = new Torizon.WinForms.OnBoardKeyboard.TextBox();
             this.labelInput = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -62,9 +62,9 @@ namespace monoDemo
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageModule)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // tabControl1
-            // 
+            //
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -75,11 +75,11 @@ namespace monoDemo
             this.tabControl1.Padding = new System.Drawing.Point(20, 3);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(661, 479);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 1;
             this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
-            // 
+            //
             // tabPage1
-            // 
+            //
             this.tabPage1.Controls.Add(this.welcome);
             this.tabPage1.Controls.Add(this.textBoxInput);
             this.tabPage1.Controls.Add(this.labelInput);
@@ -93,9 +93,9 @@ namespace monoDemo
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Controls";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
+            //
             // welcome
-            // 
+            //
             this.welcome.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.welcome.Location = new System.Drawing.Point(0, -4);
             this.welcome.Name = "welcome";
@@ -103,26 +103,26 @@ namespace monoDemo
             this.welcome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.welcome.TabIndex = 5;
             this.welcome.TabStop = false;
-            // 
+            //
             // textBoxInput
-            // 
+            //
             this.textBoxInput.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxInput.Location = new System.Drawing.Point(6, 380);
             this.textBoxInput.Name = "textBoxInput";
             this.textBoxInput.Size = new System.Drawing.Size(644, 40);
             this.textBoxInput.TabIndex = 4;
-            // 
+            //
             // labelInput
-            // 
+            //
             this.labelInput.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelInput.Location = new System.Drawing.Point(6, 336);
             this.labelInput.Name = "labelInput";
             this.labelInput.Size = new System.Drawing.Size(641, 33);
             this.labelInput.TabIndex = 3;
             this.labelInput.Text = "Input:";
-            // 
+            //
             // button1
-            // 
+            //
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button1.Location = new System.Drawing.Point(27, 241);
@@ -134,9 +134,9 @@ namespace monoDemo
             this.button1.Text = "LED TOGGLE";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
+            //
             // pictureBox1
-            // 
+            //
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Location = new System.Drawing.Point(0, 147);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(20);
@@ -146,9 +146,9 @@ namespace monoDemo
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -156,9 +156,9 @@ namespace monoDemo
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 2;
-            // 
+            //
             // tabPage2
-            // 
+            //
             this.tabPage2.Controls.Add(this.tableInfo);
             this.tabPage2.Location = new System.Drawing.Point(4, 42);
             this.tabPage2.Name = "tabPage2";
@@ -167,9 +167,9 @@ namespace monoDemo
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
+            //
             // tableInfo
-            // 
+            //
             this.tableInfo.AutoScroll = true;
             this.tableInfo.ColumnCount = 2;
             this.tableInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.99382F));
@@ -183,6 +183,7 @@ namespace monoDemo
             this.tableInfo.Controls.Add(this.pictureBox2, 0, 0);
             this.tableInfo.Controls.Add(this.labelKernelVersion, 1, 1);
             this.tableInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableInfo.Location = new System.Drawing.Point(3, 3);
             this.tableInfo.Margin = new System.Windows.Forms.Padding(20);
             this.tableInfo.Name = "tableInfo";
@@ -193,9 +194,9 @@ namespace monoDemo
             this.tableInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 500F));
             this.tableInfo.Size = new System.Drawing.Size(647, 427);
             this.tableInfo.TabIndex = 0;
-            // 
+            //
             // pictureBox5
-            // 
+            //
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.Location = new System.Drawing.Point(6, 647);
             this.pictureBox5.Name = "pictureBox5";
@@ -203,20 +204,20 @@ namespace monoDemo
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 8;
             this.pictureBox5.TabStop = false;
-            // 
+            //
             // labelTorizonVersion
-            // 
+            //
             this.labelTorizonVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTorizonVersion.AutoSize = true;
-            this.labelTorizonVersion.Location = new System.Drawing.Point(370, 233);
+            this.labelTorizonVersion.Location = new System.Drawing.Point(355, 229);
             this.labelTorizonVersion.Name = "labelTorizonVersion";
-            this.labelTorizonVersion.Size = new System.Drawing.Size(113, 33);
+            this.labelTorizonVersion.Size = new System.Drawing.Size(143, 42);
             this.labelTorizonVersion.TabIndex = 0;
             this.labelTorizonVersion.Text = "Torizon";
             this.labelTorizonVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // pictureBox3
-            // 
+            //
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Location = new System.Drawing.Point(6, 1650);
@@ -225,21 +226,21 @@ namespace monoDemo
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
-            // 
+            //
             // labelFrameworkVersion
-            // 
+            //
             this.labelFrameworkVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelFrameworkVersion.AutoSize = true;
             this.labelFrameworkVersion.BackColor = System.Drawing.Color.Transparent;
-            this.labelFrameworkVersion.Location = new System.Drawing.Point(346, 1733);
+            this.labelFrameworkVersion.Location = new System.Drawing.Point(325, 1729);
             this.labelFrameworkVersion.Name = "labelFrameworkVersion";
-            this.labelFrameworkVersion.Size = new System.Drawing.Size(162, 33);
+            this.labelFrameworkVersion.Size = new System.Drawing.Size(204, 42);
             this.labelFrameworkVersion.TabIndex = 1;
             this.labelFrameworkVersion.Text = "Framework";
             this.labelFrameworkVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // pictureBox4
-            // 
+            //
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Location = new System.Drawing.Point(6, 1146);
@@ -248,21 +249,21 @@ namespace monoDemo
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
-            // 
+            //
             // labelHWInfo
-            // 
+            //
             this.labelHWInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelHWInfo.AutoSize = true;
             this.labelHWInfo.BackColor = System.Drawing.Color.Transparent;
-            this.labelHWInfo.Location = new System.Drawing.Point(328, 1233);
+            this.labelHWInfo.Location = new System.Drawing.Point(301, 1229);
             this.labelHWInfo.Name = "labelHWInfo";
-            this.labelHWInfo.Size = new System.Drawing.Size(197, 33);
+            this.labelHWInfo.Size = new System.Drawing.Size(251, 42);
             this.labelHWInfo.TabIndex = 5;
             this.labelHWInfo.Text = "Hardware Info";
             this.labelHWInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // pictureBox2
-            // 
+            //
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Location = new System.Drawing.Point(6, 155);
             this.pictureBox2.Name = "pictureBox2";
@@ -271,20 +272,20 @@ namespace monoDemo
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
-            // 
+            //
             // labelKernelVersion
-            // 
+            //
             this.labelKernelVersion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelKernelVersion.AutoSize = true;
-            this.labelKernelVersion.Location = new System.Drawing.Point(377, 733);
+            this.labelKernelVersion.Location = new System.Drawing.Point(364, 729);
             this.labelKernelVersion.Name = "labelKernelVersion";
-            this.labelKernelVersion.Size = new System.Drawing.Size(99, 33);
+            this.labelKernelVersion.Size = new System.Drawing.Size(126, 42);
             this.labelKernelVersion.TabIndex = 7;
             this.labelKernelVersion.Text = "Kernel";
             this.labelKernelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // tabPage3
-            // 
+            //
             this.tabPage3.AutoScroll = true;
             this.tabPage3.Controls.Add(this.imageModule);
             this.tabPage3.Location = new System.Drawing.Point(4, 42);
@@ -294,18 +295,18 @@ namespace monoDemo
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Hardware";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
+            //
             // imageModule
-            // 
+            //
             this.imageModule.Location = new System.Drawing.Point(3, 6);
             this.imageModule.Name = "imageModule";
             this.imageModule.Size = new System.Drawing.Size(120, 120);
             this.imageModule.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageModule.TabIndex = 0;
             this.imageModule.TabStop = false;
-            // 
+            //
             // Form1
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 479);
@@ -351,7 +352,7 @@ namespace monoDemo
         private System.Windows.Forms.PictureBox imageModule;
         private System.Windows.Forms.Label labelKernelVersion;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.TextBox textBoxInput;
+        private Torizon.WinForms.OnBoardKeyboard.TextBox textBoxInput;
         private System.Windows.Forms.Label labelInput;
         private System.Windows.Forms.PictureBox welcome;
     }

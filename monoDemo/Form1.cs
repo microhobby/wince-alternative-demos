@@ -128,26 +128,9 @@ namespace monoDemo
         private void Form1_Load(object sender, EventArgs e)
         {
             this.imageModule.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.imageModule.LoadAsync("https://docs.toradex.com/112616-apalis-imx8qm-8gb-wbit-front.png");
-            //this.imageModule.LoadAsync("https://media1.tenor.com/m/apxQpu70-i4AAAAd/funny-animals-dog.gif");
+            // this.imageModule.LoadAsync("https://docs.toradex.com/112616-apalis-imx8qm-8gb-wbit-front.png");
+            this.imageModule.LoadAsync("https://media1.tenor.com/m/apxQpu70-i4AAAAd/funny-animals-dog.gif");
             this.tableInfo.AutoScroll = true;
-
-            // make sure to hide the onboard keyboard
-            Exec.Bash(
-                "dbus-send --type=method_call --dest=org.onboard.Onboard /org/onboard/Onboard/Keyboard org.onboard.Onboard.Keyboard.Hide"
-            );
-
-            // if you want to show the onboard screen you need to do it yourself
-            EventHandler onboardToggle = (_sender, _e) =>
-            {
-                Exec.Bash(
-                    "dbus-send --type=method_call --dest=org.onboard.Onboard /org/onboard/Onboard/Keyboard org.onboard.Onboard.Keyboard.ToggleVisible"
-                );
-            };
-
-            this.textBoxInput.GotFocus += onboardToggle;
-            //this.textBoxInput.LostFocus += onboardToggle;
-            this.textBoxInput.Leave += onboardToggle;
 
             // set the input text to the label
             this.textBoxInput.TextChanged += (_sender, _e) =>

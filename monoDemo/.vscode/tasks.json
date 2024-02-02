@@ -11,6 +11,9 @@
                 "${file}"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "re-change-custom-textbox"
+            ],
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
@@ -23,8 +26,11 @@
             "detail": "Builds the project using the msbuild",
             "command": "msbuild",
             "type": "process",
-        "args": [],
+            "args": [],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "change-custom-textbox"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -2144,6 +2150,34 @@
                 "color": "terminal.ansiYellow"
             }
         },
+        {
+            "label": "change-custom-textbox",
+            "detail": "",
+            "hide": true,
+            "command": "sed",
+            "args": [
+                "-i",
+                "s/System.Windows.Forms.TextBox/Torizon.WinForms.OnBoardKeyboard.TextBox/g",
+                "${workspaceFolder}/Form1.Designer.cs"
+            ],
+            "dependsOn": [
+            ],
+            "dependsOrder": "sequence",
+        },
+        {
+            "label": "re-change-custom-textbox",
+            "detail": "",
+            "hide": true,
+            "command": "sed",
+            "args": [
+                "-i",
+                "s/Torizon.WinForms.OnBoardKeyboard.TextBox/System.Windows.Forms.TextBox/g",
+                "${workspaceFolder}/Form1.Designer.cs"
+            ],
+            "dependsOn": [
+            ],
+            "dependsOrder": "sequence",
+        }
     ],
     "inputs": [
         {
