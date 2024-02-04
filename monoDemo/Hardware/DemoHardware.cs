@@ -2,7 +2,9 @@
 using System;
 using System.Device.Gpio;
 using System.Device.Gpio.Drivers;
+using System.Device.I2c;
 using Iot.Device.Button;
+using Iot.Device.CharacterLcd;
 using Torizon.Shell;
 
 namespace Torizon {
@@ -11,10 +13,12 @@ namespace Torizon {
     {
         public GpioPin LedRed { get; set; }
         public GpioButton ButtonRed { get; set; }
+        public Lcd1602 LCDDisplay { get; set; }
 
         protected virtual int Gpiochip { get; }
         protected virtual int PinLedRed { get; }
         protected virtual int PinButtonRed { get; }
+        protected virtual int I2cBusId { get; }
 
         protected GpioController _gpioController;
 
@@ -89,6 +93,16 @@ namespace Torizon {
                 false,
                 TimeSpan.FromMilliseconds(120)
             );
+
+            var i2cDevSettings = new I2cConnectionSettings(
+                this.I2cBusId, 0x3f
+            );
+            var i2cDev = I2cDevice.Create(i2cDevSettings);
+            LCDDisplay = new Lcd1602(i2cDev, false) {
+                BlinkingCursorVisible = false
+            };
+            // only to make sure the display is clear
+            LCDDisplay.Clear();
         }
     }
 }
