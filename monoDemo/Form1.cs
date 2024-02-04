@@ -136,6 +136,13 @@ namespace monoDemo
             this.textBoxInput.TextChanged += (_sender, _e) =>
             {
                 this.labelInput.Text = $"Input ({this.textBoxInput.Text}): ";
+                //  also send this to the LCD Display
+                if (this._embedded)
+                {
+                    this._demoHardware.LCDDisplay.Clear();
+                    this._demoHardware.LCDDisplay
+                        .Write(this.textBoxInput.Text);
+                }
             };
 
             // touch like events ??
