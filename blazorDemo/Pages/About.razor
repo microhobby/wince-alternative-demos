@@ -1,0 +1,85 @@
+@page "/about"
+@inject IJSRuntime JSRuntime
+@inject DemoHardwareService demoHardwareService
+
+<PageTitle>About</PageTitle>
+
+<!-- TECH VERSION TABLE -->
+<div class="scroll">
+    <div class="row" data-aos="fade-right">
+        <div class="col-3 d-flex align-items-center">
+            <img
+                src="assets/torizon.png"
+                class="image-fit-larger" />
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <h3>@_torizonVersion</h3>
+        </div>
+    </div>
+
+    <div class="row margins" data-aos="fade-right">
+        <div class="col-3 d-flex align-items-center">
+            <img
+                src="assets/tux.png"
+                class="image-fit-larger" />
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <h3>@_linuxVersion</h3>
+        </div>
+    </div>
+
+    <div class="row margins" data-aos="fade-right">
+        <div class="col-3 d-flex align-items-center">
+            <img
+                src="assets/board.png"
+                class="image-fit-larger" />
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <h3>@_board</h3>
+        </div>
+    </div>
+
+    <div class="row margins" data-aos="fade-right">
+        <div class="col-3 d-flex align-items-center">
+            <img
+                src="assets/dotnet.png"
+                class="image-fit-larger" />
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <h3>@_dotnetVersion</h3>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string _torizonVersion = "5.0.0";
+    private string _linuxVersion = "5.0.0";
+    private string _board = "Apalis iMX8";
+    private string _dotnetVersion = "5.0.0";
+
+    protected async override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("AOS.init");
+
+            this._torizonVersion = TorizonInfo.GetTorizonVersion();
+            this._linuxVersion = TorizonInfo.GetKernelVersion();
+
+            // get the .net version that we are using
+            this._dotnetVersion =
+                System.Runtime.InteropServices
+                    .RuntimeInformation.FrameworkDescription;
+            this._dotnetVersion =
+                $"{this._dotnetVersion} running on {TorizonInfo.GetArch()}";
+
+            // the hardware infro from device tree we only get if embedded
+            if (demoHardwareService.IsEmbedded)
+            {
+                this._board = DemoHardware.GetBoardModel();
+            }
+
+            StateHasChanged();
+        }
+    }
+}

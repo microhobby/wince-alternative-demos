@@ -1,0 +1,133 @@
+@page "/"
+@inject DemoHardwareService demoHardwareService
+
+<PageTitle>Controls</PageTitle>
+
+<!-- TECH LIST -->
+<div class="center-div">
+    <div class="row">
+        <div class="col image-zoom">
+            <img
+                src="assets/torizon.png"
+                class="image-fit">
+        </div>
+        <div class="col image-zoom">
+            <img
+                src="assets/dotnet.png"
+                class="image-fit">
+        </div>
+        <div class="col image-zoom">
+            <img
+                src="assets/tux.png"
+                class="image-fit">
+        </div>
+        <div class="col image-zoom">
+            <img
+                src="assets/blazor.png"
+                class="image-fit">
+        </div>
+        <div class="col image-zoom">
+            <img
+                src="assets/docker.png"
+                class="image-fit">
+        </div>
+    </div>
+</div>
+
+<!-- LED -->
+<div class="container-fluid center-fluid">
+    <div class="row led-cont-margin">
+        <div class="col text-center">
+            <img
+                src="@_ledState"
+                class="image-fit" />
+        </div>
+    </div>
+    <div class="row led-cont-margin">
+        <div class="col text-center">
+            <button
+                @onclick="toggleLED"
+                class="btn btn-primary">
+                LED TOGGLE
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- INPUT -->
+<div class="container-fluid center-fluid">
+    <div class="row led-cont-margin">
+        <div class="col">
+            <h20>
+                Input: (@labelText)
+            </h20>
+        </div>
+    </div>
+    <div class="row led-cont-margin">
+        <div class="col text-center">
+            <input
+                type="text"
+                class="form-control"
+                @oninput="input_changed"
+                placeholder="Enter text" />
+        </div>
+    </div>
+</div>
+
+@code {
+    private string? labelText = null;
+    private string? _ledState = "assets/ledoff.png";
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (demoHardwareService.IsEmbedded)
+            {
+                demoHardwareService.Hardware?
+                    .LCDDisplay.Clear();
+
+                _ledState =
+                    demoHardwareService.LEDState == PinValue.High ?
+                        "assets/ledon.png" : "assets/ledoff.png";
+
+                StateHasChanged();
+            }
+        }
+    }
+
+    private void toggleLED()
+    {
+        if (demoHardwareService.IsEmbedded)
+        {
+            // change image
+            if (demoHardwareService.LEDState == PinValue.High)
+            {
+                demoHardwareService.LEDState = PinValue.Low;
+                _ledState = "assets/ledoff.png";
+            }
+            else
+            {
+                demoHardwareService.LEDState = PinValue.High;
+                _ledState = "assets/ledon.png";
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    private void input_changed(ChangeEventArgs e)
+    {
+        labelText = e?.Value?.ToString();
+
+        if (demoHardwareService.IsEmbedded)
+        {
+            demoHardwareService.Hardware?
+                .LCDDisplay.Clear();
+            demoHardwareService.Hardware?
+                .LCDDisplay.Write(labelText!);
+        }
+
+        StateHasChanged();
+    }
+}
