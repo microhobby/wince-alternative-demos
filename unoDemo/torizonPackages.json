@@ -1,0 +1,8 @@
+{
+    "deps": [
+        "libgpiod-dev"
+    ],
+    "devDeps": [
+        "libgpiod-dev"
+    ]
+}

@@ -1,0 +1,14 @@
+[
+    {
+        "source": "unoDemo.Skia.Gtk/unoDemo.Skia.Gtk.csproj",
+        "target": "$projectName.Skia.Gtk/$projectName.Skia.Gtk.csproj"
+    },
+    {
+        "source": "unoDemo/unoDemo.csproj",
+        "target": "$projectName/$projectName.csproj"
+    },
+    {
+        "source": "unoDemo/App.cs",
+        "target": "$projectName/App.cs"
+    }
+]

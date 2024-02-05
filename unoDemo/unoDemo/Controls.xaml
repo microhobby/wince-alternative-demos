@@ -1,0 +1,55 @@
+<Page x:Class="unoDemo.Controls"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:unoDemo"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch">
+
+        <StackPanel
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+
+            <!-- TECH -->
+            <Image
+                Margin="0,40,0,0"
+                Source="Assets/techs2.png"
+                Height="179" />
+
+            <!-- LED -->
+            <Image
+                Name="LedImage"
+                Margin="0,80,0,0"
+                Source="Assets/ledoff.png"
+                Height="128" />
+
+            <Button
+                Name="LedButton"
+                Click="OnLedToggle"
+                Margin="0,40,0,0"
+                Content="TOGGLE LED"
+                HorizontalAlignment="Center"
+                Width="530"
+                Height="100"
+                FontSize="24" />
+
+            <TextBlock
+                Name="TextInputLabel"
+                Margin="0,60,0,0"
+                Text="Input ()"
+                FontSize="36" />
+
+            <TextBox
+                Name="TextInput"
+                TextChanging="OnTextChanging"
+                HorizontalAlignment="Left"
+                Margin="0,40,0,0"
+                Width="1000"
+                Height="auto"
+                FontSize="28" />
+        </StackPanel>
+    </Grid>
+
+</Page>
