@@ -1,0 +1,153 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:avaloniaDemo.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="1920"
+        d:DesignHeight="1080"
+        x:Class="avaloniaDemo.Views.AboutView"
+        x:DataType="vm:MainWindowViewModel">
+
+    <DockPanel>
+        <ScrollViewer
+            HorizontalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Visible" >
+
+            <Grid
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Margin="20" >
+
+                <!-- two collums -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- four rows -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- left collum -->
+                <StackPanel
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                    <Image
+                        Source="avares://avaloniaDemo/Assets/torizon.png"
+                        Width="220" />
+                </StackPanel>
+
+                <!-- right collum -->
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <TextBlock
+                        Name="TorizonVersion"
+                        TextWrapping="Wrap"
+                        Text="This app is built with:"
+                        FontSize="45"
+                        FontWeight="Bold" />
+                </StackPanel>
+
+                <!-- left collum -->
+                <StackPanel
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                    <Image
+                        Source="avares://avaloniaDemo/Assets/tux.png"
+                        Width="220" />
+                </StackPanel>
+
+                <!-- right collum -->
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <TextBlock
+                        Name="LinuxVersion"
+                        TextWrapping="Wrap"
+                        Text="Torizon Version"
+                        FontSize="45"
+                        FontWeight="Bold" />
+                </StackPanel>
+
+                <!-- left collum -->
+                <StackPanel
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                    <Image
+                        Source="avares://avaloniaDemo/Assets/board.png"
+                        Width="220" />
+                </StackPanel>
+
+                <!-- right collum -->
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0, 220, 0, 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <TextBlock
+                        Name="BoardVersion"
+                        TextWrapping="Wrap"
+                        Text="Board Info"
+                        FontSize="45"
+                        FontWeight="Bold" />
+                </StackPanel>
+
+                <!-- left collum -->
+                <StackPanel
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Margin="0, 220, 0, 220"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+                    <Image
+                        Source="avares://avaloniaDemo/Assets/dotnet.png"
+                        Width="220" />
+                </StackPanel>
+
+                <!-- right collum -->
+                <StackPanel
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Margin="0, 220, 0, 220"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <TextBlock
+                        Name="DotNetVersion"
+                        TextWrapping="Wrap"
+                        Text=".NET Version"
+                        FontSize="45"
+                        FontWeight="Bold" />
+                </StackPanel>
+
+            </Grid>
+
+        </ScrollViewer>
+    </DockPanel>
+
+</UserControl>

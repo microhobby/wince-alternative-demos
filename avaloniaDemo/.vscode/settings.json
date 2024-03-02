@@ -1,0 +1,34 @@
+{
+  "torizon_psswd": "torizon",
+  "torizon_login": "torizon",
+  "torizon_ip": "192.168.0.242",
+  "host_ip": "192.168.0.247",
+  "torizon_workspace": "${workspaceFolder}",
+  "torizon_debug_port": "",
+  "torizon_debug_ssh_port": "2223",
+  "torizon_debug_port2": "",
+  "torizon_debug_port3": "",
+  "torizon_gpu": "-imx8",
+  "torizon_arch": "aarch64",
+  "wait_sync": "1",
+  "torizon_run_as": "torizon",
+  "torizon_app_root": "/home/torizon/app",
+  "tcb.packageName": "avaloniaDemo",
+  "tcb.version": "3.8.1",
+  "torizon.gpuPrefixRC": true,
+  "dotnet.preferCSharpExtension": true,
+  "omnisharp.useModernNet": true,
+  "dotnet.server.useOmnisharp": true,
+  "files.associations": {
+    "*.axaml": "AXAML"
+  },
+  "docker.environment": {
+    "DOCKER_HOST": "tcp://192.168.0.242:2375"
+  },
+  "workbench.editor.showTabs": "multiple",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.axaml": "$(capture).axaml.cs"
+  }
+}

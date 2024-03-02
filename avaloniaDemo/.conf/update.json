@@ -1,0 +1,58 @@
+[
+    {
+        "source": "avaloniaDemo.csproj",
+        "target": "$projectName.csproj"
+    },
+    {
+        "source": ".vscode/settings.json",
+        "target": ".vscode/settings.json"
+    },
+    {
+        "source": ".vscode/launch.json",
+        "target": ".vscode/launch.json"
+    },
+    {
+        "source": "global.json",
+        "target": "global.json"
+    },
+    {
+        "source": "App.axaml",
+        "target": "App.axaml"
+    },
+    {
+        "source": "App.axaml.cs",
+        "target": "App.axaml.cs"
+    },
+    {
+        "source": "app.manifest",
+        "target": "app.manifest"
+    },
+    {
+        "source": "Program.cs",
+        "target": "Program.cs"
+    },
+    {
+        "source": "ViewLocator.cs",
+        "target": "ViewLocator.cs"
+    },
+    {
+        "source": "Views/MainWindow.axaml",
+        "target": "Views/MainWindow.axaml"
+    },
+    {
+        "source": "Views/MainWindow.axaml.cs",
+        "target": "Views/MainWindow.axaml.cs"
+    },
+    {
+        "source": "ViewModels/MainWindowViewModel.cs",
+        "target": "ViewModels/MainWindowViewModel.cs"
+    },
+    {
+        "source": "ViewModels/ViewModelBase.cs",
+        "target": "ViewModels/ViewModelBase.cs"
+    },
+    {
+        "source": "Assets/avalonia-logo.ico",
+        "target": "Assets/avalonia-logo.ico"
+    }
+]
